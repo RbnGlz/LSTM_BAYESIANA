@@ -62,3 +62,23 @@ Modelo de red neuronal LSTM Bayesiana optimizado para la predicción de precios 
 - **Guardado/carga de modelos**: Mecanismo para preservar modelos entrenados.
 - **Early stopping**: Implementado para evitar sobreajuste y ahorrar tiempo.
 - **Hiperparámetros optimizados**: Tamaño de batch y capas ocultas ajustados para mejor rendimiento.
+
+## Cómo usar el modelo
+
+1. **Instalación de dependencias**:
+   ```bash
+   pip install torch pyro-ppl yfinance pandas numpy matplotlib scikit-learn
+   ```
+
+2. **Ejecución del modelo**:
+   ```bash
+   python bayesian_lstm.py
+   ```
+
+3. **Parámetros configurables**:
+   - `ticker`: Símbolo de la acción a analizar (ej. "AAPL", "MSFT", "GOOGL")
+   - `start_date` y `end_date`: Rango de fechas para los datos
+   - `hidden_size`: Tamaño de capas ocultas LSTM
+   - `num_layers`: Número de capas LSTM
+   - `batch_size`: Tamaño de lote para entrenamiento
+   - `num_epochs`: Número máximo de épocas de entrenamiento
