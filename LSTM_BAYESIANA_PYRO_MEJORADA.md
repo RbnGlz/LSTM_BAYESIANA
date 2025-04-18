@@ -80,7 +80,7 @@ import time
 import concurrent.futures
 from sklearn.preprocessing import RobustScaler
 
-# 1️⃣ Descargar datos de precios de acciones - OPTIMIZADO
+# 1️: Descargar datos de precios de acciones - OPTIMIZADO
 def get_stock_data(ticker="AAPL", start="2020-01-01", end="2024-01-01", cache_dir="data_cache"):
     """
     Descarga datos históricos de precios de acciones con caché y manejo mejorado de errores.
@@ -146,7 +146,7 @@ def get_stock_data(ticker="AAPL", start="2020-01-01", end="2024-01-01", cache_di
         df = download_single_ticker(ticker)
         return df[["Close"]].values  # Para mantener compatibilidad con el código original
 
-# 2️⃣ Preprocesar datos - OPTIMIZADO
+# 2️: Preprocesar datos - OPTIMIZADO
 def prepare_data(data, seq_length=30, test_size=0.2, val_size=0.1, stride=1, feature_engineering=True):
     """
     Preprocesa los datos para el entrenamiento del modelo LSTM con técnicas avanzadas.
@@ -230,7 +230,7 @@ def prepare_data(data, seq_length=30, test_size=0.2, val_size=0.1, stride=1, fea
     
     return (X_train, y_train), (X_val, y_val), (X_test, y_test), scaler, feature_columns if feature_engineering else ['Close']
 
-# 3️⃣ Definir el modelo LSTM mejorado
+# 3️: Definir el modelo LSTM mejorado
 class BayesianLSTM(nn.Module):
     def __init__(self, input_size, hidden_size, output_size, num_layers=1, dropout=0.2):
         super().__init__()
@@ -265,7 +265,7 @@ class BayesianLSTM(nn.Module):
             out = self.fc(out)
         return out
 
-# 4️⃣ Modelo probabilístico mejorado en Pyro
+# 4️: Modelo probabilístico mejorado en Pyro
 def pyro_model(x, y=None, model=None):
     """
     Define el modelo probabilístico para inferencia bayesiana con priors más informativos.
@@ -301,7 +301,7 @@ def pyro_model(x, y=None, model=None):
 
     return y_hat
 
-# 5️⃣ Entrenar con inferencia bayesiana y early stopping
+# 5️: Entrenar con inferencia bayesiana y early stopping
 def train(model, x_train, y_train, x_val=None, y_val=None, num_epochs=1000, batch_size=64, lr=0.01, 
           patience=20, early_stopping=True):
     """
@@ -396,7 +396,7 @@ def train(model, x_train, y_train, x_val=None, y_val=None, num_epochs=1000, batc
 
     return losses, guide
 
-# 6️⃣ Predicción optimizada con el modelo entrenado
+# 6️: Predicción optimizada con el modelo entrenado
 def predict(model, x_input, guide, num_samples=100, use_parallel=True):
     """
     Realiza predicciones con múltiples muestras del modelo posterior.
@@ -438,7 +438,7 @@ def predict(model, x_input, guide, num_samples=100, use_parallel=True):
     
     return mean_pred, std_pred
 
-# 7️⃣ Evaluar el modelo con corrección matemática
+# 7️: Evaluar el modelo con corrección matemática
 def evaluate_model(model, guide, x_test, y_test, scaler, feature_columns):
     """
     Evalúa el modelo en el conjunto de prueba con cálculos de error corregidos.
@@ -516,7 +516,7 @@ def evaluate_model(model, guide, x_test, y_test, scaler, feature_columns):
     
     return metrics, mean_preds_real, std_preds_real, y_test_real
 
-# 8️⃣ Visualizar resultados con gráficos mejorados
+# 8️: Visualizar resultados con gráficos mejorados
 def plot_predictions(train_data, test_data, predictions, std_dev, title="Predicciones del modelo"):
     """
     Visualiza las predicciones del modelo junto con intervalos de confianza.
@@ -576,7 +576,7 @@ def plot_predictions(train_data, test_data, predictions, std_dev, title="Predicc
     
     return plt
 
-# 9️⃣ Función principal mejorada
+# 9️: Función principal mejorada
 def main():
     """Función principal optimizada."""
     # Configuración
